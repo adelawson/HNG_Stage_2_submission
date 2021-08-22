@@ -53,9 +53,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            >
 
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/i4g_logo"
@@ -91,6 +94,10 @@
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp"
                 android:src="@drawable/hng_logo" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
 
         </LinearLayout>
     </LinearLayout>
