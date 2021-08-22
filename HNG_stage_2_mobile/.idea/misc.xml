@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/adela/AndroidStudioProjects/HNG/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/HNG/app/src/main/res/layout/activity_splashscreen.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/HNG/app/src/main/res/layout/popup_window.xml" value="0.4619771863117871" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/HNG/app/src/main/res/layout/splash_screen.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

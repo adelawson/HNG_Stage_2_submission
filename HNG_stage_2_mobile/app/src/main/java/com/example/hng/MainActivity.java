@@ -2,13 +2,24 @@ package com.example.hng;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 noText.show();
             } else if ((nameField.getText().length()) != 0) {
                 String fullName = nameField.getText().toString();
-                Toast textToast= Toast.makeText(MainActivity.this,
-                        ("Your full name is " + fullName), Toast.LENGTH_LONG);
-                textToast.setGravity(Gravity.CENTER_VERTICAL,0,0);
-                textToast.show();
+                dismissKeyBoard();
+                popUpCreator(v,fullName);
             }
         });
 //set onClick listener for imageviews to open websites of the respective brands using imageUrl
@@ -59,6 +68,50 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+    }
+
+//dismiss keyboard
+    private void dismissKeyBoard() {
+        InputMethodManager keyboardManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
+        if(keyboardManager.isAcceptingText()) {
+            keyboardManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    public void popUpCreator(View view,String msg) {
+
+//inflate popup window layout setting it to popup window xml
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window,null);
+        PopupWindow popupWindow = new PopupWindow(popupView,
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+//code to change text in popup window
+        TextView popText= popupWindow.getContentView().findViewById(R.id.pop_up_text);
+        popText.setText(msg);
+
+// Dim background on popup
+        View container = (View) popupWindow.getContentView().getParent();
+        Context context = popupWindow.getContentView().getContext();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.3f;
+        wm.updateViewLayout(container, p);
+
+//Dismiss popup window when you touch outside the window
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
     }
 
 }
