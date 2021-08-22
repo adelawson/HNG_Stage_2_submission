@@ -12,15 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_above="@id/loading_anim"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_zuri_logo" />
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="wrap_content"
+        android:id="@+id/loading_anim"
         android:layout_marginTop="8dp"
         android:layout_height="56dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/splash_logo"
         android:src="@drawable/pacman_loading"
         />
 
